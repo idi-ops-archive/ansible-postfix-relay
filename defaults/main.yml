@@ -1,0 +1,6 @@
+---
+
+postfix_common_packages:
+  - postfix
+  - msmtp
+

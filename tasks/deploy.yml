@@ -1,0 +1,27 @@
+---
+
+- name: Enable and start postfix
+  service:
+    name: postfix
+    enabled: yes
+    state: started
+  when: not is_docker
+
+- name: Create Supervisor config for Docker containers
+  template:
+    src: supervisor_postfix.ini.j2
+    dest: "/etc/supervisord.d/postfix.ini"
+    mode: 0644
+    owner: root
+    group: root
+  when: "{{ is_docker }}"
+ 
+- name: Create Postfix config file
+  template:
+    src: main.cf.j2
+    dest: "/etc/postfix/main.cf"
+    mode: 0644
+    owner: root
+    group: root
+  when: "{{ is_docker }}"
+ 

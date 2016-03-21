@@ -1,1 +1,1 @@
-# ansible-postfix-relay
+# ansible-postfix
