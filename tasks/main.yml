@@ -1,0 +1,14 @@
+---
+
+- name: Install packages
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: postfix_relay_packages
+
+- name: Configure Postfix
+  template:
+    src: main.cf.j2
+    dest: /etc/postfix/main.cf
+  notify:
+    - restart postfix
