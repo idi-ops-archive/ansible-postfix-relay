@@ -8,10 +8,15 @@ mail_owner = postfix
 inet_interfaces = localhost
 inet_protocols = all
 
-mydestination = \$myhostname, localhost.\$mydomain, localhost
+mydestination = 127.0.0.1
 
-mydomain = {{ postfix_mydomain }}
-relayhost = {{ postfix_relayhost }}
+relayhost = smtp-relay.gmail.com:587
+mydomain = raisingthefloor.org
+smtp_use_tls = yes
+smtp_enforce_tls = yes
+smtp_sasl_security_options =
+smtp_tls_security_level = encrypt
+smtp_tls_CAfile = /etc/ssl/certs/ca-bundle.trust.crt
 
 unknown_local_recipient_reject_code = 550
 
